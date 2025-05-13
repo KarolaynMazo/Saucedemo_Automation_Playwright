@@ -1,7 +1,9 @@
 module.exports ={
     default: {
         paths: [
-            "src/features"
+          //  "src/features/*.feature"
+         "src/features/saucedemo.feature",
+         "src/features/json_place.feature"
         ], 
         dryRun: false,
         format: [
@@ -15,11 +17,13 @@ module.exports ={
             snippetInterface: "async-await"
         },
         require: [
-            "src/stepDefinitions/*.ts"
+            "src/stepDefinitions/*.ts",
+            "src/setupHook/setup.ts"
         ],
         requireModule: [
             "ts-node/register"
-        ]
+        ],
+     
     }
 }
 

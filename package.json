@@ -5,7 +5,9 @@
   "main": "index.js",
   "module": "CommonJS",
   "scripts": {
-    "cucumber": "cucumber-js --config config/cucumber.js --publish"
+    "cucumber:allTest":"cucumber-js --config config/cucumber.js --publish",
+    "cucumber:saucedemo": "cucumber-js --config config/cucumber.js --publish src/features/saucedemo.feature",
+    "cucumber:jsonplace": "cucumber-js src/features/login.feature --publish src/features/json_place_holder.feature"
   },
   "keywords": [],
   "author": "",

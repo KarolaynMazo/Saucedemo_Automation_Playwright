@@ -9,21 +9,14 @@ import {
 import { GoToPage } from '../task/GoToPage';
 import { DoLogin } from '../task/DoLogin';
 import { ValidateLogin } from '../questions/ValidateLogin';
-
-
-
-let browser: Browser;
-let page: Page;
+import '../setupHook/setup';
 
 
 
 
 
 Given('that customer wants to navigate to the saucemo page', async function () {
-  browser = await chromium.launch({ headless: false });
-  page = await browser.newPage();
-
-  const url = new GoToPage(page);
+  const url = new GoToPage(this.page);
   await url.goto()
     
 
@@ -31,19 +24,19 @@ Given('that customer wants to navigate to the saucemo page', async function () {
 
 
 When('A user enters the username {string}, the password {string}, and clicks on the login button', async function (username: string, password: string) {
-const login = new DoLogin(page,username,password);
+const login = new DoLogin(this.page,username,password);
 
  await login.intoData(username,password);
- await page.pause()
+ await this.page.pause()
 });
 
 
 Then('you can see the main page with title {string}', async function (title: string) {
   //await expect(page.locator('//div[contains(text(),"Products")]')).toContainText(title);
 
-  const validation = new ValidateLogin(page,title);
+  const validation = new ValidateLogin(this.page,title);
   await validation.validateField(title);
-await browser.close();
+
 
 });
 
